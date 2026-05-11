@@ -1,0 +1,253 @@
+Conversation avec Gemini
+Je veux créer une page web en lien avec les ODD, je veux quantifier les déchets alimentaires de notre cantine, nous sommes un collège de Vaucluse de 700 demi-pensionnaires, nous avons une poubelle de tri alimentaire, une der serviette papier, une emballage, une fruit entamé, une pour le pain; je suis complètement débutant , j'ai besoin que tu m'aides pas à pas. Je n'y connais rien !
+
+C'est un projet magnifique ! Non seulement tu vas apprendre à coder, mais tu vas aussi agir concrètement pour l'ODD 12 (Consommation et production responsables).
+
+Ne t'inquiète pas du tout pour ton niveau : tout le monde a commencé un jour sans rien y connaître. On va avancer étape par étape.
+
+Étape 1 : Le concept (Ton "Cahier des Charges")
+Avant de coder, il faut savoir ce que l'on veut afficher. D'après tes informations, nous allons créer une page qui permet de :
+
+Saisir le poids (en kg) pour chaque catégorie de déchets.
+
+Calculer le total par jour.
+
+Calculer le ratio par élève (puisqu'il y a 700 demi-pensionnaires).
+
+Étape 2 : Les outils gratuits
+Tu n'as rien à installer. Pour débuter, je te conseille d'utiliser un éditeur en ligne. C'est comme un traitement de texte, mais pour le code.
+
+Va sur CodePen.io ou Replit.com.
+
+Tu verras trois zones : HTML (la structure), CSS (la décoration) et JS (les calculs).
+
+Étape 3 : La structure (HTML)
+C'est le "squelette" de ta page. Copie ce code dans la partie HTML :
+
+HTML
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anti-Gaspi Vaucluse</title>
+</head>
+<body>
+
+    <h1>📊 Gaspillage Alimentaire - Collège du Vaucluse</h1>
+    <p>Suivi pour 700 demi-pensionnaires</p>
+
+    <div class="formulaire">
+        <label>Déchets alimentaires (kg) :</label>
+        <input type="number" id="bio" placeholder="0">
+
+        <label>Serviettes papier (kg) :</label>
+        <input type="number" id="serviettes" placeholder="0">
+
+        <label>Emballages (kg) :</label>
+        <input type="number" id="emballages" placeholder="0">
+
+        <label>Fruits entamés (kg) :</label>
+        <input type="number" id="fruits" placeholder="0">
+
+        <label>Pain (kg) :</label>
+        <input type="number" id="pain" placeholder="0">
+
+        <button onclick="calculer()">Calculer le bilan</button>
+    </div>
+
+    <div id="resultat">
+        </div>
+
+</body>
+</html>
+Étape 4 : Le cerveau (JavaScript)
+C'est ici que la magie opère pour faire les calculs. Copie ceci dans la partie JS :
+
+JavaScript
+function calculer() {
+    // On récupère les valeurs saisies
+    let bio = parseFloat(document.getElementById('bio').value) || 0;
+    let serviettes = parseFloat(document.getElementById('serviettes').value) || 0;
+    let emballages = parseFloat(document.getElementById('emballages').value) || 0;
+    let fruits = parseFloat(document.getElementById('fruits').value) || 0;
+    let pain = parseFloat(document.getElementById('pain').value) || 0;
+
+    // Calculs
+    let total = bio + serviettes + emballages + fruits + pain;
+    let parEleve = (total / 700) * 1000; // Résultat en grammes par élève
+
+    // Affichage
+    document.getElementById('resultat').innerHTML = `
+        <h3>Résultats du jour :</h3>
+        <p><strong>Total des déchets :</strong> ${total.toFixed(2)} kg</p>
+        <p><strong>Moyenne par élève :</strong> ${parEleve.toFixed(0)} grammes</p>
+    `;
+}
+Étape 5 : Le design (CSS)
+Pour que ce soit plus joli, ajoute ceci dans la partie CSS :
+
+CSS
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f9f4; /* Un vert très clair */
+    padding: 20px;
+    text-align: center;
+}
+
+.formulaire {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    text-align: left;
+}
+
+input {
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #2ecc71; /* Vert ODD */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+Pourquoi c'est important ?
+Avec cet outil, tu vas pouvoir montrer à tes camarades que si chaque élève laisse 50g de pain, cela fait 35 kg de pain jeté en un seul repas !
+
+Petit conseil de "pro" : Au collège, vous pourriez utiliser une tablette à la sortie de la cantine pour que les élèves de service saisissent les poids chaque jour.
+
+Est-ce que tu as réussi à copier ces codes dans un éditeur ? Veux-tu qu'on ajoute une barre de progression pour comparer vos résultats à un objectif (par exemple, descendre sous les 20g par élève) ?
+
+comment heberger ce texte
+
+C'est une excellente question ! Une fois que ton code fonctionne sur ton ordinateur (ou sur un éditeur en ligne), l'étape de l'hébergement consiste à le mettre sur un "serveur" pour que tout le monde puisse y accéder avec une adresse (URL) type https://mon-projet-cantine.com.
+
+Puisque tu es débutant, voici les trois solutions les plus simples, de la plus rapide à la plus "pro".
+
+1. La solution "Zéro technique" : CodePen
+Si tu as utilisé CodePen pour tester ton code, tu n'as rien à faire !
+
+Une fois ton code collé, clique sur "Save".
+
+L'adresse dans la barre de ton navigateur (ex: codepen.io/ton-nom/pen/abcde) est déjà un lien public.
+
+Avantage : Instantané.
+
+Inconvénient : L'adresse est un peu compliquée et il y a l'interface de CodePen autour.
+
+2. La solution "Pro & Gratuite" : GitHub Pages
+C'est la méthode préférée des développeurs. C'est gratuit et très propre.
+
+Crée un compte sur GitHub.com.
+
+Crée un nouveau "Repository" (un dossier de projet) nommé cantine-odd.
+
+Dépose ton fichier dedans (il doit impérativement s'appeler index.html).
+
+Va dans les Settings (Paramètres) > Pages.
+
+Sous "Build and deployment", choisis la branche main et clique sur Save.
+
+Résultat : Ton site sera en ligne à l'adresse https://ton-pseudo.github.io/cantine-odd/.
+
+3. La solution "Collège" : L'ENT ou le site de l'établissement
+Puisque c'est un projet scolaire, c'est souvent la meilleure option pour la visibilité :
+
+L'ENT (MonCollège en Vaucluse) : Tu peux parfois créer des "Pages" ou des "Blogs". Tu peux y copier ton code HTML (souvent via un bouton < > ou "Source" dans l'éditeur de texte).
+
+Le site du collège : Demande à ton professeur documentaliste ou au référent numérique. Ils peuvent héberger ton fichier sur le serveur du collège.
+
+Mon conseil pour toi
+Pour commencer aujourd'hui, utilise Netlify Drop :
+
+Enregistre ton code dans un fichier texte sur ton ordinateur et nomme-le index.html.
+
+Glisse ce fichier sur la page de Netlify Drop.
+
+Boum ! Ton site est en ligne avec un lien généré automatiquement. C'est magique et ça prend 10 secondes.
+
+Veux-tu que je t'explique comment préparer ton fichier index.html sur ton ordinateur avant de le mettre en ligne ?
+
+ok pour github
+
+Excellent choix ! GitHub est l'outil utilisé par les professionnels, c'est très gratifiant de savoir s'en servir. Comme tu n'y connais rien, on va passer par une méthode simplifiée qui ne demande aucune installation de logiciel.
+
+Voici ta feuille de route pour mettre ta page en ligne sur github.io.
+
+1. Préparer ton fichier "Tout-en-un"
+Sur GitHub, il est plus simple au début de mettre tout (HTML, CSS et JavaScript) dans un seul fichier.
+
+Ouvre le Bloc-notes (Windows) ou TextEdit (Mac).
+
+Copie-colle le code ci-dessous (j'ai fusionné les trois parties précédentes pour toi) :
+
+HTML
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Anti-Gaspi Vaucluse</title>
+    <style>
+        /* Le CSS est ici */
+        body { font-family: Arial, sans-serif; background-color: #f4f9f4; padding: 20px; text-align: center; }
+        .formulaire { background: white; padding: 20px; border-radius: 10px; max-width: 400px; margin: 0 auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        label { display: block; margin-top: 10px; text-align: left; }
+        input { width: 90%; padding: 8px; margin-bottom: 10px; }
+        button { background-color: #2ecc71; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-weight: bold; }
+        #resultat { margin-top: 20px; padding: 15px; background: #eef; border-radius: 10px; display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <h1>📊 Gaspillage Alimentaire</h1>
+    <h3>Collège du Vaucluse - 700 élèves</h3>
+
+    <div class="formulaire">
+        <label>Déchets alimentaires (kg) :</label>
+        <input type="number" id="bio" step="0.1">
+
+        <label>Serviettes papier (kg) :</label>
+        <input type="number" id="serviettes" step="0.1">
+
+        <label>Emballages (kg) :</label>
+        <input type="number" id="emballages" step="0.1">
+
+        <label>Fruits entamés (kg) :</label>
+        <input type="number" id="fruits" step="0.1">
+
+        <label>Pain (kg) :</label>
+        <input type="number" id="pain" step="0.1">
+
+        <button onclick="calculer()">CALCULER LE BILAN</button>
+    </div>
+
+    <div id="resultat">Remplissez les cases pour voir le résultat.</div>
+
+    <script>
+        /* Le JavaScript est ici */
+        function calculer() {
+            let bio = parseFloat(document.getElementById('bio').value) || 0;
+            let serviettes = parseFloat(document.getElementById('serviettes').value) || 0;
+            let emballages = parseFloat(document.getElementById('emballages').value) || 0;
+            let fruits = parseFloat(document.getElementById('fruits').value) || 0;
+            let pain = parseFloat(document.getElementById('pain').value) || 0;
+
+            let total = bio + serviettes + emballages + fruits + pain;
+            let parEleve = (total / 700) * 1000;
+
+            document.getElementById('resultat').innerHTML = `
+                <p><strong>Total :</strong> ${total.toFixed(2)} kg de déchets</p>
+                <p><strong>Impact :</strong> ${parEleve.toFixed(0)} grammes par plateau</p>
+            `;
+        }
