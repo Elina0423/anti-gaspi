@@ -1,3 +1,423 @@
+Conversation avec Gemini
+Je veux créer une page web en lien avec les ODD, je veux quantifier les déchets alimentaires de notre cantine, nous sommes un collège de Vaucluse de 700 demi-pensionnaires, nous avons une poubelle de tri alimentaire, une der serviette papier, une emballage, une fruit entamé, une pour le pain; je suis complètement débutant , j'ai besoin que tu m'aides pas à pas. Je n'y connais rien !
+
+C'est un projet magnifique ! Non seulement tu vas apprendre à coder, mais tu vas aussi agir concrètement pour l'ODD 12 (Consommation et production responsables).
+
+Ne t'inquiète pas du tout pour ton niveau : tout le monde a commencé un jour sans rien y connaître. On va avancer étape par étape.
+
+Étape 1 : Le concept (Ton "Cahier des Charges")
+Avant de coder, il faut savoir ce que l'on veut afficher. D'après tes informations, nous allons créer une page qui permet de :
+
+Saisir le poids (en kg) pour chaque catégorie de déchets.
+
+Calculer le total par jour.
+
+Calculer le ratio par élève (puisqu'il y a 700 demi-pensionnaires).
+
+Étape 2 : Les outils gratuits
+Tu n'as rien à installer. Pour débuter, je te conseille d'utiliser un éditeur en ligne. C'est comme un traitement de texte, mais pour le code.
+
+Va sur CodePen.io ou Replit.com.
+
+Tu verras trois zones : HTML (la structure), CSS (la décoration) et JS (les calculs).
+
+Étape 3 : La structure (HTML)
+C'est le "squelette" de ta page. Copie ce code dans la partie HTML :
+
+HTML
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anti-Gaspi Vaucluse</title>
+</head>
+<body>
+
+    <h1>📊 Gaspillage Alimentaire - Collège du Vaucluse</h1>
+    <p>Suivi pour 700 demi-pensionnaires</p>
+
+    <div class="formulaire">
+        <label>Déchets alimentaires (kg) :</label>
+        <input type="number" id="bio" placeholder="0">
+
+        <label>Serviettes papier (kg) :</label>
+        <input type="number" id="serviettes" placeholder="0">
+
+        <label>Emballages (kg) :</label>
+        <input type="number" id="emballages" placeholder="0">
+
+        <label>Fruits entamés (kg) :</label>
+        <input type="number" id="fruits" placeholder="0">
+
+        <label>Pain (kg) :</label>
+        <input type="number" id="pain" placeholder="0">
+
+        <button onclick="calculer()">Calculer le bilan</button>
+    </div>
+
+    <div id="resultat">
+        </div>
+
+</body>
+</html>
+Étape 4 : Le cerveau (JavaScript)
+C'est ici que la magie opère pour faire les calculs. Copie ceci dans la partie JS :
+
+JavaScript
+function calculer() {
+    // On récupère les valeurs saisies
+    let bio = parseFloat(document.getElementById('bio').value) || 0;
+    let serviettes = parseFloat(document.getElementById('serviettes').value) || 0;
+    let emballages = parseFloat(document.getElementById('emballages').value) || 0;
+    let fruits = parseFloat(document.getElementById('fruits').value) || 0;
+    let pain = parseFloat(document.getElementById('pain').value) || 0;
+
+    // Calculs
+    let total = bio + serviettes + emballages + fruits + pain;
+    let parEleve = (total / 700) * 1000; // Résultat en grammes par élève
+
+    // Affichage
+    document.getElementById('resultat').innerHTML = `
+        <h3>Résultats du jour :</h3>
+        <p><strong>Total des déchets :</strong> ${total.toFixed(2)} kg</p>
+        <p><strong>Moyenne par élève :</strong> ${parEleve.toFixed(0)} grammes</p>
+    `;
+}
+Étape 5 : Le design (CSS)
+Pour que ce soit plus joli, ajoute ceci dans la partie CSS :
+
+CSS
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f9f4; /* Un vert très clair */
+    padding: 20px;
+    text-align: center;
+}
+
+.formulaire {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    text-align: left;
+}
+
+input {
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #2ecc71; /* Vert ODD */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+Pourquoi c'est important ?
+Avec cet outil, tu vas pouvoir montrer à tes camarades que si chaque élève laisse 50g de pain, cela fait 35 kg de pain jeté en un seul repas !
+
+Petit conseil de "pro" : Au collège, vous pourriez utiliser une tablette à la sortie de la cantine pour que les élèves de service saisissent les poids chaque jour.
+
+Est-ce que tu as réussi à copier ces codes dans un éditeur ? Veux-tu qu'on ajoute une barre de progression pour comparer vos résultats à un objectif (par exemple, descendre sous les 20g par élève) ?
+
+comment heberger ce texte
+
+C'est une excellente question ! Une fois que ton code fonctionne sur ton ordinateur (ou sur un éditeur en ligne), l'étape de l'hébergement consiste à le mettre sur un "serveur" pour que tout le monde puisse y accéder avec une adresse (URL) type https://mon-projet-cantine.com.
+
+Puisque tu es débutant, voici les trois solutions les plus simples, de la plus rapide à la plus "pro".
+
+1. La solution "Zéro technique" : CodePen
+Si tu as utilisé CodePen pour tester ton code, tu n'as rien à faire !
+
+Une fois ton code collé, clique sur "Save".
+
+L'adresse dans la barre de ton navigateur (ex: codepen.io/ton-nom/pen/abcde) est déjà un lien public.
+
+Avantage : Instantané.
+
+Inconvénient : L'adresse est un peu compliquée et il y a l'interface de CodePen autour.
+
+2. La solution "Pro & Gratuite" : GitHub Pages
+C'est la méthode préférée des développeurs. C'est gratuit et très propre.
+
+Crée un compte sur GitHub.com.
+
+Crée un nouveau "Repository" (un dossier de projet) nommé cantine-odd.
+
+Dépose ton fichier dedans (il doit impérativement s'appeler index.html).
+
+Va dans les Settings (Paramètres) > Pages.
+
+Sous "Build and deployment", choisis la branche main et clique sur Save.
+
+Résultat : Ton site sera en ligne à l'adresse https://ton-pseudo.github.io/cantine-odd/.
+
+3. La solution "Collège" : L'ENT ou le site de l'établissement
+Puisque c'est un projet scolaire, c'est souvent la meilleure option pour la visibilité :
+
+L'ENT (MonCollège en Vaucluse) : Tu peux parfois créer des "Pages" ou des "Blogs". Tu peux y copier ton code HTML (souvent via un bouton < > ou "Source" dans l'éditeur de texte).
+
+Le site du collège : Demande à ton professeur documentaliste ou au référent numérique. Ils peuvent héberger ton fichier sur le serveur du collège.
+
+Mon conseil pour toi
+Pour commencer aujourd'hui, utilise Netlify Drop :
+
+Enregistre ton code dans un fichier texte sur ton ordinateur et nomme-le index.html.
+
+Glisse ce fichier sur la page de Netlify Drop.
+
+Boum ! Ton site est en ligne avec un lien généré automatiquement. C'est magique et ça prend 10 secondes.
+
+Veux-tu que je t'explique comment préparer ton fichier index.html sur ton ordinateur avant de le mettre en ligne ?
+
+ok pour github
+
+Excellent choix ! GitHub est l'outil utilisé par les professionnels, c'est très gratifiant de savoir s'en servir. Comme tu n'y connais rien, on va passer par une méthode simplifiée qui ne demande aucune installation de logiciel.
+
+Voici ta feuille de route pour mettre ta page en ligne sur github.io.
+
+1. Préparer ton fichier "Tout-en-un"
+Sur GitHub, il est plus simple au début de mettre tout (HTML, CSS et JavaScript) dans un seul fichier.
+
+Ouvre le Bloc-notes (Windows) ou TextEdit (Mac).
+
+Copie-colle le code ci-dessous (j'ai fusionné les trois parties précédentes pour toi) :
+
+HTML
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Anti-Gaspi Vaucluse</title>
+    <style>
+        /* Le CSS est ici */
+        body { font-family: Arial, sans-serif; background-color: #f4f9f4; padding: 20px; text-align: center; }
+        .formulaire { background: white; padding: 20px; border-radius: 10px; max-width: 400px; margin: 0 auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        label { display: block; margin-top: 10px; text-align: left; }
+        input { width: 90%; padding: 8px; margin-bottom: 10px; }
+        button { background-color: #2ecc71; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-weight: bold; }
+        #resultat { margin-top: 20px; padding: 15px; background: #eef; border-radius: 10px; display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <h1>📊 Gaspillage Alimentaire</h1>
+    <h3>Collège du Vaucluse - 700 élèves</h3>
+
+    <div class="formulaire">
+        <label>Déchets alimentaires (kg) :</label>
+        <input type="number" id="bio" step="0.1">
+
+        <label>Serviettes papier (kg) :</label>
+        <input type="number" id="serviettes" step="0.1">
+
+        <label>Emballages (kg) :</label>
+        <input type="number" id="emballages" step="0.1">
+
+        <label>Fruits entamés (kg) :</label>
+        <input type="number" id="fruits" step="0.1">
+
+        <label>Pain (kg) :</label>
+        <input type="number" id="pain" step="0.1">
+
+        <button onclick="calculer()">CALCULER LE BILAN</button>
+    </div>
+
+    <div id="resultat">Remplissez les cases pour voir le résultat.</div>
+
+    <script>
+        /* Le JavaScript est ici */
+        function calculer() {
+            let bio = parseFloat(document.getElementById('bio').value) || 0;
+            let serviettes = parseFloat(document.getElementById('serviettes').value) || 0;
+            let emballages = parseFloat(document.getElementById('emballages').value) || 0;
+            let fruits = parseFloat(document.getElementById('fruits').value) || 0;
+            let pain = parseFloat(document.getElementById('pain').value) || 0;
+
+            let total = bio + serviettes + emballages + fruits + pain;
+            let parEleve = (total / 700) * 1000;
+
+            document.getElementById('resultat').innerHTML = `
+                <p><strong>Total :</strong> ${total.toFixed(2)} kg de déchets</p>
+                <p><strong>Impact :</strong> ${parEleve.toFixed(0)} grammes par plateau</p>
+            `;
+        }
+    </script>
+</body>
+</html>
+Enregistre ce fichier sur ton bureau sous le nom exact : index.html (attention à ne pas l'appeler index.html.txt).
+
+2. Créer le projet sur GitHub
+Connecte-toi sur GitHub.
+
+Clique sur le bouton vert "New" (ou le "+" en haut à droite) pour créer un "Repository".
+
+Nomme-le anti-gaspi.
+
+Coche la case "Public".
+
+Coche la case "Add a README file" (cela facilite la création).
+
+Clique sur "Create repository" tout en bas.
+
+3. Envoyer ton fichier
+Dans ton nouveau projet, clique sur le bouton "Add file" puis "Upload files".
+
+Glisse ton fichier index.html (celui qui est sur ton bureau) dans la zone grise.
+
+Clique sur le bouton vert "Commit changes" en bas.
+
+4. Activer la page web (L'hébergement)
+C'est la dernière étape pour rendre le lien actif :
+
+Clique sur l'onglet Settings (la roue dentée en haut de la page).
+
+Dans le menu à gauche, clique sur Pages.
+
+Sous "Build and deployment" > "Branch", clique sur le bouton "None" et choisis main.
+
+Clique sur Save.
+
+Attends 1 minute. Rafraîchis la page. Un bandeau va apparaître en haut : "Your site is live at..." suivi d'une adresse bleue.
+
+C'est ton lien ! Tu peux maintenant l'envoyer à tes professeurs ou tes amis pour qu'ils l'ouvrent sur leur téléphone ou leur ordinateur.
+
+Dis-moi quand tu as créé ton compte GitHub, je pourrai t'aider si tu bloques sur un bouton !
+
+dans la dernière etape u s
+
+C'est tout à fait normal de s'arrêter là, c'est l'étape où le code devient "réel" !
+
+Quand tu es dans l'onglet Pages de GitHub, il faut juste donner un petit coup de pouce au serveur pour qu'il comprenne quel fichier afficher. Voici la précision sur ce réglage :
+
+La manipulation précise :
+Sous la section "Branch", tu verras un menu déroulant qui affiche souvent None.
+
+Clique dessus et sélectionne main.
+
+Juste à côté, un deuxième dossier apparaît (souvent écrit /(root)), laisse-le tel quel.
+
+Clique bien sur le bouton Save.
+
+Comment savoir si ça a marché ?
+Une barre jaune ou bleue va apparaître en haut de la page avec un message du type : "GitHub Pages is currently being built".
+
+Patiente environ 60 secondes (GitHub doit fabriquer l'adresse web).
+
+Rafraîchis la page (F5) : le message deviendra vert et dira : "Your site is live at..." suivi d'une adresse qui ressemble à : https://ton-pseudo.github.io/anti-gaspi/.
+
+Truc de débutant à savoir :
+Si tu cliques sur le lien et que tu vois une page d'erreur (404), pas de panique ! C'est juste que les serveurs de GitHub mettent parfois 2 ou 3 minutes à se mettre à jour la toute première fois. Reprends un carré de chocolat et réessaie un peu plus tard.
+
+Est-ce que tu vois le bouton "Save" ou est-ce que l'écran affiche autre chose ?
+
+dans la dernière étape où se trouve l'onglet setting ?
+
+Pas d'inquiétude, l'interface de GitHub peut paraître un peu chargée quand on débute !
+
+L'onglet Settings (Paramètres) se trouve dans la barre de navigation de ton "Repository" (ton projet), juste en dessous du nom de ton projet.
+
+Où regarder précisément :
+Regarde tout en haut de la page, là où tu vois le nom de ton projet (ex: ton-pseudo / anti-gaspi). Juste en dessous, tu as une ligne d'onglets :
+
+<> Code (celui où tu es par défaut)
+
+Issues
+
+Pull requests
+
+Actions
+
+Projects
+
+Wiki
+
+Security
+
+Insights
+
+Settings ⚙️ <-- C'est celui-là ! Tout à droite.
+
+Note : Si ton écran est petit ou si tu as zoomé dans ton navigateur, il se peut que l'onglet Settings soit caché derrière un bouton avec trois petits points "..." à la fin de la liste.
+
+Une fois que tu as cliqué sur Settings :
+Regarde la colonne à gauche.
+
+Cherche la section "Code and automation".
+
+Clique sur Pages.
+
+C'est là que tu pourras choisir la branche main et cliquer sur Save.
+
+Petit rappel : N'oublie pas que pour que cela fonctionne, ton fichier doit impérativement s'appeler index.html. S'il s'appelle Index.html (avec une majuscule) ou monprojet.html, GitHub ne le trouvera pas par défaut.
+
+Tu as réussi à le débusquer ?
+
+j'ai rafraichi la page mais il n'y a toujours rien
+
+C'est le petit moment de stress classique en informatique, mais pas de panique ! Si la page ne s'affiche pas encore, c'est généralement dû à l'un de ces trois petits détails.
+
+Vérifions ensemble point par point :
+
+1. Le nom du fichier (Le plus probable)
+Retourne sur l'onglet <> Code de ton projet.
+
+Est-ce que ton fichier s'appelle bien exactement index.html ?
+
+Attention : Tout doit être en minuscules. Si tu as écrit Index.html ou index.HTML, GitHub ne le reconnaîtra pas comme ta page d'accueil.
+
+Pour corriger : Clique sur le fichier, puis sur la petite icône de crayon pour le renommer.
+
+2. Le statut de la "Build"
+GitHub doit "fabriquer" ton site après que tu as cliqué sur Save.
+
+Retourne dans Settings > Pages.
+
+Est-ce que tu vois un bandeau coloré en haut ?
+
+Bleu : Il est en train de travailler (attends encore 1 minute).
+
+Rouge : Il y a eu une erreur (dis-le moi).
+
+Vert : Il te donne l'adresse URL (clique dessus).
+
+3. Le cache de ton navigateur
+Parfois, ton navigateur "se souvient" que la page était vide et ne va pas chercher la nouvelle version.
+
+Essaie d'ouvrir le lien sur ton téléphone (en 4G/5G, pas sur le Wi-Fi du collège si celui-ci bloque GitHub).
+
+Ou utilise le raccourci Ctrl + F5 sur ton clavier (cela force le rafraîchissement total).
+
+Un petit test pour être sûr
+Si tu vas dans l'onglet Actions (juste à côté de Settings), vois-tu une ligne avec un petit cercle qui tourne ou une encoche verte ?
+
+Si c'est une croix rouge, c'est qu'il y a un souci dans le code.
+
+Si c'est un cercle jaune, il faut juste être encore un peu patient.
+
+Est-ce que tu vois une petite encoche verte dans l'onglet Actions ?
+
+j'ai pas compris c'est quoi ce que je dois mettre dans le bloc notes ?
+
+D'accord, je comprends ! On va reprendre tranquillement. Comme tu es débutant, le "Bloc-notes" est ton outil pour fabriquer le fichier qui contient tout ton site.
+
+Imagine que tu construis un meuble : le Bloc-notes, c'est ton établi, et le code que je t'ai donné, c'est le bois et les vis.
+
+Ce que tu dois copier exactement :
+C'est ce gros bloc de texte ci-dessous. Il contient la structure (HTML), le style (CSS) et les calculs (JavaScript).
+
+Copie tout ce qui est dans le cadre gris ci-dessous :
+
+HTML
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -60,3 +480,278 @@
                 <div style="font-size: 1.2rem; color: #15803d;">Total : ${total.toFixed(1)} kg</div>
                 <div style="margin-top:5px;">Soit ${parEleve.toFixed(0)}g par élève.</div>
                 <div style="margin-top:10px; font-style: italic;">${message}</div>
+            `;
+        }
+    </script>
+</body>
+</html>
+Comment bien l'enregistrer (Très important) :
+Ouvre ton Bloc-notes.
+
+Colle le texte.
+
+Clique sur Fichier > Enregistrer sous.
+
+Dans la petite fenêtre qui s'ouvre :
+
+Choisis "Tous les fichiers" dans la liste en bas (au lieu de "Fichiers texte .txt").
+
+Tape le nom : index.html
+
+Enregistre sur ton bureau.
+
+Une fois que c'est fait : Tu peux double-cliquer sur ce fichier index.html sur ton bureau. Il devrait s'ouvrir directement dans ton navigateur (Chrome ou Edge) et tu verras ton site fonctionner avant même de le mettre sur GitHub !
+
+Est-ce que tu as réussi à obtenir une page qui s'affiche sur ton écran ?
+
+je ne peux pas cliquer sur save il est grisé
+
+C'est un classique ! Si le bouton Save (ou Save changes) est grisé sur GitHub, c'est généralement pour une seule raison : tu n'as pas encore fait de "choix" dans le menu déroulant juste au-dessus.
+
+Voici comment débloquer la situation :
+
+1. La solution au bouton grisé
+Regarde juste au-dessus du bouton Save. Tu as un menu qui affiche probablement "None".
+
+Clique sur "None" et sélectionne "main" (ou parfois "master").
+
+Dès que tu auras sélectionné une branche (le nom "main" apparaîtra), le bouton Save devrait devenir bleu ou vert et tu pourras cliquer dessus.
+
+2. Si c'est toujours grisé
+Vérifie que tu as bien déposé ton fichier avant :
+
+As-tu bien ton fichier index.html qui apparaît dans l'onglet <> Code ?
+
+Si le dossier est vide, GitHub ne te laisse pas activer les "Pages".
+
+Résumé de la manipulation (dans l'ordre) :
+Va dans Settings (en haut).
+
+Clique sur Pages (à gauche).
+
+Sous Branch, clique sur le menu déroulant et choisis main.
+
+Le bouton Save s'allume : clique dessus !
+
+Comment savoir si c'est bon ?
+Une fois que tu as cliqué sur Save, patiente 1 minute.
+Ensuite, rafraîchis la page (touche F5). Si tu vois un bandeau qui dit : "Your site is live at..." avec un lien bleu, c'est la victoire ! 🏆
+
+Dis-moi si le mot "None" a bien été remplacé par "main". Si ce n'est pas le cas, on cherchera une autre piste !
+
+index html.txt j ai ca ?
+
+Ah ! C'est le piège classique de Windows. Ton ordinateur a ajouté l'extension .txt à la fin sans te le dire, et pour GitHub, un fichier .txt n'est pas une page web.
+
+C'est pour cela que le bouton reste grisé ou que rien ne s'affiche : GitHub cherche une "page" (.html) et il ne trouve qu'un "texte" (.txt).
+
+Voici comment corriger ça très facilement :
+Option A : Directement sur GitHub (Le plus simple)
+
+Va sur ton projet sur GitHub (onglet <> Code).
+
+Clique sur ton fichier index.html.txt.
+
+Cherche l'icône du petit crayon (Edit this file) en haut à droite.
+
+Dans la case où il y a le nom du fichier, efface tout et tape exactement : index.html
+
+Descends tout en bas et clique sur le bouton vert "Commit changes".
+
+Option B : Sur ton ordinateur (Si tu veux comprendre pourquoi ça arrive)
+Par défaut, Windows cache les extensions. Pour lui, tu as appelé ton fichier "index.html" mais son "nom de famille" reste ".txt".
+
+Ouvre ton dossier.
+
+En haut, clique sur l'onglet Affichage.
+
+Coche la case "Extensions de noms de fichiers".
+
+Là, tu vas voir apparaître le vilain .txt. Fais un clic droit sur le fichier, choisis Renommer, et supprime le .txt à la fin.
+
+Windows va te dire : "Si vous modifiez l'extension, le fichier risque d'être inutilisable". Dis Oui ! L'icône devrait changer pour devenir celle de ton navigateur (Chrome, Edge ou Firefox).
+
+Et après ?
+Une fois que le fichier s'appelle bien index.html sur GitHub :
+
+Retourne dans Settings > Pages.
+
+Le bouton Save ne devrait plus être grisé quand tu choisiras la branche main.
+
+C'est l'étape finale ! Dis-moi si tu as réussi à renommer ce fichier.
+
+j'arrive pas a changer le nom du fichier
+
+Pas de panique, c'est l'étape la plus agaçante mais on va la régler en 30 secondes. Si tu n'y arrives pas sur ton ordinateur, on va le faire directement dans GitHub, c'est beaucoup plus simple.
+
+La méthode "Commando" sur GitHub :
+Va sur la page d'accueil de ton projet GitHub (clique sur l'onglet <> Code tout en haut à gauche).
+
+Dans la liste des fichiers, clique sur ton fichier index.html.txt.
+
+Une fois le fichier ouvert, regarde en haut à droite de l'encadré du texte. Tu devrais voir une petite icône de crayon ✏️ (si tu laisses ta souris dessus, il y a écrit "Edit this file"). Clique dessus.
+
+Maintenant, regarde tout en haut, là où il y a écrit index.html.txt. Tu peux cliquer dans la case et effacer le .txt. Il doit rester uniquement : index.html
+
+Pour valider, clique sur le gros bouton vert en haut à droite qui dit "Commit changes...".
+
+Une petite fenêtre s'ouvre, clique encore sur le bouton vert "Commit changes".
+
+Pourquoi c'est important ?
+Tant qu'il y a .txt, GitHub pense que c'est une rédaction de français. Dès que tu le renommes en .html, il comprend que c'est un site web.
+
+Une fois que c'est fait :
+Retourne dans l'onglet Settings ⚙️.
+
+Va dans Pages à gauche.
+
+Normalement, maintenant que le fichier est "propre", tu peux sélectionner main et le bouton Save ne sera plus grisé !
+
+Est-ce que tu as réussi à cliquer sur ce petit crayon ?
+
+j'ai rien sur ma page
+
+C'est tout à fait normal ! Quand on renomme un fichier ou qu'on active une option sur GitHub, il y a un petit temps de "cuisson". GitHub est en train de fabriquer ton site en arrière-plan.
+
+Voici comment vérifier ce qui se passe et régler le problème si rien n'apparaît :
+
+1. Vérifie la "cuisson" (Onglet Actions)
+C'est le meilleur moyen de savoir si GitHub travaille.
+
+Clique sur l'onglet Actions (en haut de ton projet, à côté de Settings).
+
+Est-ce que tu vois une ligne intitulée "pages build and deployment" ?
+
+Cercle orange qui tourne : Patience, il est encore au four ! (Attends 1 ou 2 minutes).
+
+Encoche verte : C'est prêt ! Tu peux rafraîchir ta page.
+
+Croix rouge : Il y a eu un bug. Dis-le moi, on regardera pourquoi.
+
+2. Force le navigateur à "oublier" l'ancienne page vide
+Parfois, ton navigateur (Chrome, Edge...) garde en mémoire que la page était vide et refuse d'afficher la nouvelle version.
+
+Va sur l'adresse de ton site (le lien bleu dans Settings > Pages).
+
+Appuie sur les touches Ctrl + F5 en même temps (ou Cmd + Shift + R sur Mac). Cela force le site à se recharger complètement.
+
+3. Vérifie le contenu de ton fichier
+Si après l'encoche verte et le rafraîchissement, la page est toujours blanche, c'est peut-être que le code n'est pas bien enregistré dans le fichier.
+
+Retourne dans l'onglet <> Code.
+
+Clique sur ton fichier index.html.
+
+Est-ce que tu vois bien tout le code (avec les balises <html>, <style>, <script>) à l'intérieur ?
+
+S'il est vide, il faut recliquer sur le petit crayon et coller à nouveau le gros bloc de code que je t'ai donné plus haut, puis faire Commit changes.
+
+Une astuce pour être sûr de ton lien :
+Ton adresse doit ressembler à ceci :
+https://[TON-PSEUDO].github.io/anti-gaspi/
+
+Petit conseil : Essaie d'ouvrir ce lien sur ton téléphone portable (en coupant le Wi-Fi pour être sûr). Si ça marche sur ton téléphone, c'est que c'est juste ton ordinateur qui fait de la résistance !
+
+Est-ce que tu vois l'encoche verte dans l'onglet Actions ?
+
+il m'a mis les serviettes et les emballages ensemble et il a oublié les fruits entamés
+
+Oups, tu as raison ! Je suis allé un peu trop vite dans ma simplification. On va corriger ça pour que ton formulaire soit exactement conforme aux poubelles de ta cantine.
+
+Il nous faut donc 5 catégories bien distinctes :
+
+Déchets alimentaires (Bio)
+
+Serviettes papier
+
+Emballages
+
+Fruits entamés
+
+Pain
+
+Voici le code corrigé (complet)
+Retourne sur GitHub, clique sur le petit crayon ✏️ de ton fichier index.html, efface tout et colle ceci à la place :
+
+HTML
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Gaspi Vaucluse</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0fdf4; color: #166534; padding: 20px; text-align: center; }
+        .card { background: white; padding: 25px; border-radius: 20px; max-width: 500px; margin: 0 auto; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border: 1px solid #dcfce7; }
+        h1 { color: #15803d; margin-bottom: 5px; }
+        .subtitle { color: #16a34a; margin-bottom: 25px; font-weight: 600; }
+        .input-group { text-align: left; margin-bottom: 12px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; color: #374151; }
+        input { width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 10px; box-sizing: border-box; font-size: 1rem; transition: border-color 0.3s; }
+        input:focus { border-color: #22c55e; outline: none; }
+        button { background-color: #22c55e; color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1.1rem; margin-top: 15px; box-shadow: 0 4px 6px rgba(34, 197, 94, 0.2); }
+        button:hover { background-color: #16a34a; }
+        #resultat { margin-top: 25px; padding: 20px; background: #f9fafb; border-radius: 12px; border: 2px solid #22c55e; }
+        .total-kg { font-size: 1.5rem; color: #15803d; font-weight: 800; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>📊 Bilan de la Cantine</h1>
+        <p class="subtitle">Collège du Vaucluse (700 élèves)</p>
+        
+        <div class="input-group">
+            <label>🍲 Déchets alimentaires (kg)</label>
+            <input type="number" id="bio" step="0.1" placeholder="Poids poubelle bio">
+        </div>
+
+        <div class="input-group">
+            <label>🧻 Serviettes papier (kg)</label>
+            <input type="number" id="serviettes" step="0.1" placeholder="Poids serviettes">
+        </div>
+
+        <div class="input-group">
+            <label>📦 Emballages (kg)</label>
+            <input type="number" id="emballages" step="0.1" placeholder="Poids emballages">
+        </div>
+
+        <div class="input-group">
+            <label>🍏 Fruits entamés (kg)</label>
+            <input type="number" id="fruits" step="0.1" placeholder="Poids fruits">
+        </div>
+
+        <div class="input-group">
+            <label>🥖 Pain (kg)</label>
+            <input type="number" id="pain" step="0.1" placeholder="Poids pain">
+        </div>
+
+        <button onclick="calculer()">CALCULER LE GASPILLAGE</button>
+
+        <div id="resultat">En attente des données...</div>
+    </div>
+
+    <script>
+        function calculer() {
+            // Récupération des 5 valeurs
+            const bio = parseFloat(document.getElementById('bio').value) || 0;
+            const serviettes = parseFloat(document.getElementById('serviettes').value) || 0;
+            const emballages = parseFloat(document.getElementById('emballages').value) || 0;
+            const fruits = parseFloat(document.getElementById('fruits').value) || 0;
+            const pain = parseFloat(document.getElementById('pain').value) || 0;
+            
+            const total = bio + serviettes + emballages + fruits + pain;
+            const parEleve = (total / 700) * 1000; // Conversion en grammes
+
+            let conseil = "";
+            if(parEleve < 30) conseil = "🌟 Exceptionnel ! On est des champions.";
+            else if(parEleve < 70) conseil = "👍 Pas mal, on continue les efforts.";
+            else conseil = "📉 On doit encore s'améliorer sur le tri !";
+
+            document.getElementById('resultat').innerHTML = `
+                <div class="total-kg">${total.toFixed(2)} kg</div>
+                <div>au total pour ce midi</div>
+                <hr style="margin: 15px 0; border: 0; border-top: 1px solid #ddd;">
+                <div style="font-size: 1.1rem;"><strong>${parEleve.toFixed(0)}g</strong> par plateau en moyenne</div>
+                <div style="margin-top: 10px; color: #15803d;">${conseil}</div>
+            `;
